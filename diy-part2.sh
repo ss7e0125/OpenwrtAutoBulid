@@ -14,6 +14,10 @@
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
 # NEW
+# Add luci-app-ssr-plus
+pushd package/lean
+git clone --depth=1 https://github.com/fw876/helloworld
+popd
 
 # Clone community packages to package/community
 mkdir package/community
@@ -23,19 +27,19 @@ pushd package/community
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 
 # Add luci-app-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
 # Add luci-app-vssr <M>
-git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
-git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
+# git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
+# git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
 
 # Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
+# git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
+# git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
 # Add minieap & luci-proto-minieap
-git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/minieap
+# git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
+# svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/minieap
 
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -142,4 +146,4 @@ make && sudo make install
 popd
 
 # Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+# sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
