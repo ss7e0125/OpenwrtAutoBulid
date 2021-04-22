@@ -9,11 +9,13 @@
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
 # Add luci-app-ssr-plus
-#pushd package/lean
-#git clone --depth=1 https://github.com/fw876/helloworld
-#popd
+rm -rf package/lean/helloworld
+pushd package/lean
+git clone --depth=1 https://github.com/fw876/helloworld
+popd
 
 # Clone community packages to package/community
+rm -rf package/community
 mkdir package/community
 pushd package/community
 
@@ -66,8 +68,8 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
 # Use immortalwrt's luci-app-netdata
-rm -rf ../lean/luci-app-netdata
-svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-netdata
+# rm -rf ../lean/luci-app-netdata
+# svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-netdata
 
 # Add tmate
 git clone --depth=1 https://github.com/project-openwrt/openwrt-tmate
@@ -80,7 +82,7 @@ svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/gotop
 
 # Add smartdns
 svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
+svn co https://github.com/pymumu/luci-app-smartdns/branches/lede ../luci-app-smartdns
 
 # Add luci-udptools
 git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
@@ -92,9 +94,9 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter
 git clone --depth=1 https://github.com/NateLol/luci-app-oled
 
 # Add driver for rtl8821cu & rtl8812au-ac
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8812au-ac
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8821cu
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl88x2bu
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8812au-ac
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8821cu
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl88x2bu
 popd
 
 # Add netdata
@@ -104,11 +106,11 @@ svn co https://github.com/immortalwrt/packages/trunk/admin/netdata
 popd
 
 # Mod zzz-default-settings
-pushd package/lean/default-settings/files
-sed -i '/http/d' zzz-default-settings
-export orig_version="$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')"
-sed -i "s/${orig_version}/${orig_version} ($(date +"%Y-%m-%d"))/g" zzz-default-settings
-popd
+#pushd package/lean/default-settings/files
+#sed -i '/http/d' zzz-default-settings
+#export orig_version="$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')"
+#sed -i "s/${orig_version}/${orig_version} ($(date +"%Y-%m-%d"))/g" zzz-default-settings
+#popd
 
 # Fix libssh
 pushd feeds/packages/libs
@@ -134,10 +136,10 @@ sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\
 popd
 
 # Add po2lmo
-git clone https://github.com/openwrt-dev/po2lmo.git
-pushd po2lmo
-make && sudo make install
-popd
+#git clone https://github.com/openwrt-dev/po2lmo.git
+#pushd po2lmo
+#make && sudo make install
+#popd
 
 # Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+# sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
