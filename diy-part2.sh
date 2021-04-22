@@ -1,25 +1,21 @@
 #!/bin/bash
-#
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part2.sh
-# Description: OpenWrt DIY script part 2 (After Update feeds)
-#
-
+#=================================================
+# Description: DIY script
+# Lisence: MIT
+# Author: P3TERX
+# Blog: https://p3terx.com
+#=================================================
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
-# NEW
 # Add luci-app-ssr-plus
+rm -rf package/lean/helloworld
 pushd package/lean
 git clone --depth=1 https://github.com/fw876/helloworld
 popd
 
 # Clone community packages to package/community
+rm -rf package/community
 mkdir package/community
 pushd package/community
 
@@ -30,16 +26,16 @@ git clone --depth=1 https://github.com/Lienol/openwrt-package
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 
 # Add luci-app-vssr <M>
-# git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
-# git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
+git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
+git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
 
 # Add mentohust & luci-app-mentohust
-# git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
-# git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
+git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
+git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
 # Add minieap & luci-proto-minieap
-# git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
-# svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/minieap
+git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
+svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/minieap
 
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -72,8 +68,8 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
 # Use immortalwrt's luci-app-netdata
-rm -rf ../lean/luci-app-netdata
-svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-netdata
+# rm -rf ../lean/luci-app-netdata
+# svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-netdata
 
 # Add tmate
 git clone --depth=1 https://github.com/project-openwrt/openwrt-tmate
@@ -86,7 +82,7 @@ svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/gotop
 
 # Add smartdns
 svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
-svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
+svn co https://github.com/pymumu/luci-app-smartdns/branches/lede ../luci-app-smartdns
 
 # Add luci-udptools
 git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
@@ -98,9 +94,9 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter
 git clone --depth=1 https://github.com/NateLol/luci-app-oled
 
 # Add driver for rtl8821cu & rtl8812au-ac
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8812au-ac
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8821cu
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl88x2bu
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8812au-ac
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl8821cu
+# svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/rtl88x2bu
 popd
 
 # Add netdata
